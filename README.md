@@ -1,14 +1,23 @@
-# Docker Ansible Assessment Repository (MuddasirNaveed/docker-ansible-assessment)
+# Ansible Docker Deployment Playbook
 
-This repository contains the Ansible playbook and related files for the Docker Ansible assessment completed by Muddasir Naveed.
+## Overview
 
-## Purpose
+This repository contains an Ansible playbook (`docker_deploy.yml`) designed to automate the deployment of an Apache Docker container and configure its networking. The playbook is structured to streamline the deployment process, making it efficient and consistent across different environments.
 
-The purpose of this repository is to deploy a Docker container running an Apache web server using Ansible, as per the assessment requirements.
+## Features
 
-## Running the Playbook
+- **Automated Deployment**: Deploy Apache Docker containers effortlessly using Ansible.
+- **Network Configuration**: Configure networking for Docker containers to ensure seamless connectivity.
+- **Infrastructure as Code**: Define infrastructure configurations in code, promoting version control and reproducibility.
 
-1. **Prerequisites:** Ensure you have Docker and Ansible installed on your target machine(s).
-2. **Clone the Repository:** Clone this repository to your local machine using Git. 
-  
-# docker-ansible-assessment
+## Requirements
+
+- [Ansible](https://www.ansible.com/) installed on the control machine.
+- Docker installed on target hosts.
+
+## Usage
+
+1. Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/MuddasirNaveed/ansible-docker-deployment.git
