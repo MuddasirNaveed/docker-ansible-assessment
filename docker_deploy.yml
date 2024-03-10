@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    # Deploy Apache container
+    - name: Deploy Apache container
+      docker_container:
+        name: my_apache_container
+        image: httpd
+        state: started
+        ports:
+          - "80:80"
+    # Verify network communication (limited by docker_container module)
+    - name: Check Docker network configuration (bridge network recommended)
+      debug:
+        msg: "Verify Docker network configuration is set to 'bridge' for container-host communication."
+
+  handlers:
+   
