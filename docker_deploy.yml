@@ -1,19 +1,41 @@
 ---
-- hosts: all
+- name: Deploy Apache Docker Container
+  hosts: localhost
   become: true
+  vars:
+    docker_image_name: httpd
+    docker_container_name: apache_container
+    subnet_ip: 172.168.10.1
+
   tasks:
-    # Deploy Apache container
-    - name: Deploy Apache container
+    - name: GitHub Repository Setup
+      github_repository:
+        name: "MuddasirNaveed/docker-ansible-assessment"
+        description: "Repository for assessment"
+        private: false
+        has_issues: true
+        has_projects: false
+        has_wiki: false
+        state: present
+        token: "your_github_token"
+
+    - name: Deploying Apache Docker Container
       docker_container:
-        name: my_apache_container
-        image: httpd
+        name: "{{ docker_container_name }}"
+        image: "{{ docker_image_name }}"
         state: started
         ports:
           - "80:80"
-    # Verify network communication (limited by docker_container module)
-    - name: Check Docker network configuration (bridge network recommended)
-      debug:
-        msg: "Verify Docker network configuration is set to 'bridge' for container-host communication."
 
-  handlers:
-   
+    - name: Configure Networking for Apache Container
+      docker_network:
+        name: my_network
+        state: present
+        subnet: 172.168.10.0/30
+
+    - name: Assign IP Address to Apache Container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        network_mode: my_network
+        ip_addr: "{{ subnet_ip }}"
+        restart_policy: always
