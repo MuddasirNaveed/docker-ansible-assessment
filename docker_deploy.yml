@@ -17,7 +17,7 @@
         has_projects: false
         has_wiki: false
         state: present
-        token: "your_github_token"
+        token: "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"
 
     - name: Deploying Apache Docker Container
       docker_container:
